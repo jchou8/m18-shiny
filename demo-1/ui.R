@@ -5,16 +5,16 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Hello Shiny!"),
+  titlePanel("You poppin' my stones?"),
   
   # Sidebar with a slider input for the number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
+      sliderInput("num.points",
+                  "Number of data points:",
                   min = 1,
-                  max = 50,
-                  value = 30)
+                  max = 272,
+                  value = 100)
     ),
     
     # Show a plot of the generated distribution

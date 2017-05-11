@@ -12,11 +12,12 @@ shinyServer(function(input, output) {
   #  2) Its output type is a plot
   
   output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    # x    <- faithful[, 2]  # Old Faithful Geyser data
+    # bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    data <- faithful[1:input$num.points,]
     
     # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  })
+    return(ggplot() + geom_point(mapping = aes(x = data[,1], y = data[,2])) +
+             labs(x = "Eruption length", y = "Time between eruptions"))})
   
 })
