@@ -11,7 +11,7 @@ BuildScatter <- function(data,  search = '', xvar = 'population', yvar = 'votes'
   x.equation <- paste0('~', xvar)
   y.equation <- paste0('~', yvar)
   data <- data %>% 
-    filter(grepl(search, state))
+    filter(grepl(tolower(search), tolower(state)))
     
     plot_ly(data=data, x = eval(parse(text = x.equation)), 
             y = eval(parse(text = y.equation)), 
@@ -19,7 +19,10 @@ BuildScatter <- function(data,  search = '', xvar = 'population', yvar = 'votes'
             marker = list(
               opacity = .4, 
               size = 10
-            )) %>% 
+            ),
+            text = ~paste("State: ", state,
+                          "</br>Population: ", population,
+                          "</br>Votes: ", votes)) %>% 
     layout(xaxis = list(range = c(0, xmax), title = xvar), 
            yaxis = list(range = c(0, ymax), title = yvar)
     ) %>% 
